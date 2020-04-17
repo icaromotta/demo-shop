@@ -1,0 +1,15 @@
+.back-card {
+  display: flex;
+  flex-direction: column;
+  width: 364px;
+  height: 223.78px;
+  background-image: url("./back-card-bg.svg");
+
+  input {
+    width: 40px;
+    height: 20px;
+    margin-left: 180px;
+    margin-top: 110px;
+    border: none;
+  }
+}
