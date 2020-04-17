@@ -1,0 +1,48 @@
+$textShadowFontCard: 0px 1px 2px #000000b3;
+$colorFontCard: #ffffff;
+
+.clean-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px 30px;
+  width: 364px;
+  height: 223.78px;
+  background-image: url("./card-bg.svg");
+  color: #ffffff;
+  text-shadow: $textShadowFontCard;
+
+  .clean-card-flag img {
+    width: 69px;
+  }
+
+  .clean-card-data {
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .data-number {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      font-size: 22px;
+      letter-spacing: 2.31px;
+      color: $colorFontCard;
+      text-shadow: $textShadowFontCard;
+      opacity: 1;
+    }
+
+    .data-group {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    
+      span {
+        color: $colorFontCard;
+        text-shadow: $textShadowFontCard;
+        opacity: 1;
+      }
+    }
+  }
+}
