@@ -1,0 +1,145 @@
+
+@media (max-width: 767.98px) {
+
+  .checkout {
+
+    width: 100%;
+    display: grid;
+  
+    .checkout-side {
+
+      height: 230px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+      background-color: #de4b4b;
+
+      .checkout-nav {
+        .btn-chevron-left {
+          background-color: transparent;
+          border: none;
+          text-align: start;
+          padding: 0;
+          margin: 0;
+        }
+      }
+
+      .checkout-card {
+
+        margin: 2% 15%;
+
+        .card-invate {
+
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          line-height: normal;
+          padding: 0 10%;
+          margin-bottom: 3%;
+
+          p {
+            margin: 0%;
+            padding: 0%;
+            width: 70%;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  
+    .wizard {
+      // background-color: green;
+      height: 500px;
+      padding: 90px 8%;
+
+      form {
+
+        .form-control {
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          border-bottom: 1px solid #C9C9C9;
+          background-color: transparent;
+          border-radius: 0;
+        }
+
+        
+      }
+    }
+  }
+}
+
+@media (min-width: 767.98px) {
+
+  .checkout {
+    
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    grid-template-areas: "side-bar wizard";
+    height: 596px;
+    background-color: #fff;
+
+    .checkout-side {
+      color: #fff;
+      background-color: #de4b4b;
+      grid-area: side-bar;
+      
+      .checkout-nav {
+
+        margin: 10% 15%;
+
+        .btn-chevron-left {
+          background-color: transparent;
+          border: none;
+          text-align: start;
+          padding: 0;
+          margin: 0;
+        }
+      }
+
+      .checkout-card {
+
+        height: 400px;
+        margin: 2% 15%;
+        
+        .card-invate {
+          display: flex;
+          flex-direction: row;
+          line-height: normal;
+          margin-bottom: 10%;
+
+          p {
+            margin: 0%;
+            padding: 0%;
+            width: 70%;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+    .wizard {
+      grid-area: wizard;
+
+      form {
+        padding: 15%;
+
+
+        .form-control {
+
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          border-bottom: 1px solid #C9C9C9;
+          background-color: transparent;
+          border-radius: 0;
+        }
+
+        input:focus {
+          outline: none;
+        }
+        
+      }
+    }
+  }
+}
