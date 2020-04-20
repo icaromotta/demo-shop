@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import MaskInput from "react-maskinput";
+
 import "./Checkout.scss";
 // import Chevron from "./chevron.svg";
 import CardIcon from "./card-icon.svg";
 
 import CleanCard from "../../../components/card/clean-card/CleanCard.jsx";
 
-const cardNumberRegex = RegExp(/^4\d{12}(\d{3})?$/)
+const cardNumberRegex = /\d{3}(| |-)(?:\d{4}\1){2}\d{4}$/;
+const onlyNumberRegex = /^[0-9]*$/;
 
 const formValid = (formErrors) => {
   let valid = true;
@@ -25,13 +28,13 @@ export default class Checkout extends Component {
       name: "",
       code: "",
       expiration: "",
-      timesPaymant: "",
+      times: "",
       formErrors: {
         number: "",
         name: "",
         code: "",
         expiration: "",
-        timesPaymant: "",
+        times: "",
       },
     };
   }
@@ -46,7 +49,7 @@ export default class Checkout extends Component {
         Name: ${this.state.name}
         Code: ${this.state.code}
         Expiration: ${this.state.expiration}
-        Times Paymant: ${this.state.timesPaymant}
+        Times Paymant: ${this.state.times}
       `);
     } else {
       console.error("FORM INVALID - DISPLAY ERROR");
@@ -54,7 +57,6 @@ export default class Checkout extends Component {
   };
 
   handleChange = (e) => {
-
     e.preventDefault();
 
     const { name, value } = e.target;
@@ -62,39 +64,35 @@ export default class Checkout extends Component {
 
     switch (name) {
       case "number":
-        formErrors.number = cardNumberRegex.test() ? "card number invalid" : "";
+        formErrors.number = cardNumberRegex.test(`${value}`)
+          ? ""
+          : "card number invalid";
         break;
       case "name":
-        formErrors.name = value.length < 3 ? "minimum 3 characters required" : "";
+        formErrors.name =
+          value.length < 3 ? "minimum 3 characters required" : "";
         break;
       case "code":
-        formErrors.name =
-          value.length < 6 && value.length > 0
-            ? "minimum 3 characters required"
-            : "";
+        formErrors.code = onlyNumberRegex.test(value) ? "" : "only numbers";
         break;
       case "expiration":
-        formErrors.name =
-          value.length < 6 && value.length > 0
-            ? "minimum 3 characters required"
-            : "";
+        const expirationRegex = /^(0[1-3]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/;
+        formErrors.expiration = expirationRegex.test(value)
+          ? ""
+          : "invalid date";
         break;
-      case "timesPaymant":
-        formErrors.name =
-          value.length < 6 && value.length > 0
-            ? "minimum 3 characters required"
-            : "";
+      case "times":
+        formErrors.times = value === '' ? "minimum one choice" : "";
         break;
       default:
         break;
     }
 
-    this.setState({formErrors, [name]: value})
+    this.setState({ formErrors, [name]: value }, console.log(this.state));
   };
 
   render() {
-
-    const {formErrors} = this.state
+    const { formErrors } = this.state;
 
     return (
       <div className="checkout">
@@ -115,20 +113,28 @@ export default class Checkout extends Component {
         </div>
 
         <div className="wizard">
-          {/* TODO: componentizar */}
           <form onSubmit={this.handleSubmit} noValidate>
             <div className="form-group">
-              <input
+              <MaskInput
                 type="text"
                 name="number"
                 onChange={this.handleChange}
                 placeholder="Número do cartão"
-                className="form-control"
+                className={
+                  formErrors.number.length > 0
+                    ? "form-control error"
+                    : "form-control"
+                }
+                mask="0000 0000 0000 0000"
+                size={20}
                 noValidate
               />
-              <small id="alertNumber" className="form-text text-muted">
-                Número de cartão inválido
-              </small>
+
+              {formErrors.number.length > 0 && (
+                <small id="alertName" className="error-message">
+                  Número de cartão inválido
+                </small>
+              )}
             </div>
 
             <div className="form-group">
@@ -137,7 +143,11 @@ export default class Checkout extends Component {
                 name="name"
                 onChange={this.handleChange}
                 placeholder="Nome (igual do cartão)"
-                className={formErrors.name.length > 0 ? "form-control error" : "form-control"}
+                className={
+                  formErrors.name.length > 0
+                    ? "form-control error"
+                    : "form-control"
+                }
                 noValidate
               />
               {formErrors.name.length > 0 && (
@@ -149,45 +159,75 @@ export default class Checkout extends Component {
 
             <div className="row">
               <div className="col">
-                <input
+                <MaskInput
                   type="text"
                   name="expiration"
                   onChange={this.handleChange}
-                  className="form-control"
+                  className={
+                    formErrors.expiration.length > 0
+                      ? "form-control error"
+                      : "form-control"
+                  }
                   placeholder="Validade"
+                  mask="00/00"
+                  size={5}
                   noValidate
                 />
-                <small id="alertExpiration" className="form-text text-muted">
-                  Data inválida
-                </small>
+
+                {formErrors.expiration.length > 0 && (
+                  <small className="error-message">Data inválida</small>
+                )}
               </div>
               <div className="col">
                 <input
                   type="text"
                   name="code"
                   onChange={this.handleChange}
-                  className="form-control"
+                  className={
+                    formErrors.code.length > 0
+                      ? "form-control error"
+                      : "form-control"
+                  }
                   placeholder="CCV"
+                  maxLength="3"
                   noValidate
                 />
-                <small id="alertCCV" className="form-text text-muted">
-                  Código inválido
-                </small>
+
+                {(formErrors.code.length > 0) && (
+                  <small className="error-message">Código inválido</small>
+                )}
               </div>
             </div>
 
             <div className="form-group mt-3">
+
+                
               <select
                 id="inputState"
-                name="timesPaymant"
-                className="form-control"
+                name="times"
+                className={
+                  formErrors.code.length > 0
+                    ? "form-control error"
+                    : "form-control"
+                }
                 noValidate
+                value={this.state.value}
+                onChange={this.handleChange}
+                placeholder="teste"
               >
-                <option onChange={this.handleChange}>Número de parcelas</option>
+                <option value="">Número de parcelas</option>
+                <option value="1">1X</option>
+                <option value="2">2x</option>
+                <option value="3">3x</option>
+                <option value="4">4x</option>
+                <option value="5">5x</option>
+                <option value="6">6x</option>
               </select>
-              <small id="alertCCV" className="form-text text-muted">
-                Insira o número de parcelas
-              </small>
+
+              {formErrors.times.length > 0 && (
+                <small className="error-message">Insira o número de parcelas</small>
+              )}
+
             </div>
 
             <button type="submit" className="btn btn-danger float-right">
