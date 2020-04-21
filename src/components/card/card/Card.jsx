@@ -10,14 +10,11 @@ export default (props) => (
     </div>
     <div className="card-data">
       <div className="data-number">
-        <span>5149</span>
-        <span>4505</span>
-        <span>6231</span>
-        <span>6542</span>
+        <span>{props.card.number}</span>
       </div>
       <div className="data-group">
-        <span>FELIPE B A PIO NT</span>
-        <span>06/26</span>
+        <span>{props.card.name}</span>
+        <span>{props.card.expiration}</span>
       </div>
     </div>
   </div>

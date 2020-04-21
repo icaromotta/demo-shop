@@ -10,14 +10,11 @@ export default (props) => (
     </div>
     <div className="clean-card-data">
       <div className="data-number">
-        <span>****</span>
-        <span>****</span>
-        <span>****</span>
-        <span>****</span>
+        <span>{props.card.number || '**** **** **** ****'}</span>
       </div>
       <div className="data-group">
-        <span>NOME DO TÍTULAR</span>
-        <span>00/00</span>
+        <span>{props.card.name || 'NOME DO TÍTULAR'}</span>
+        <span>{props.card.expiration || '00/00'}</span>
       </div>
     </div>
   </div>

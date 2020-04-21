@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import MaskInput from "react-maskinput";
 
 import "./Checkout.scss";
-// import Chevron from "./chevron.svg";
+import Chevron from "./chevron.svg";
 import CardIcon from "./card-icon.svg";
 
 import CleanCard from "../../../components/card/clean-card/CleanCard.jsx";
+import Card from "../../../components/card/card/Card.jsx";
 
 const cardNumberRegex = /\d{3}(| |-)(?:\d{4}\1){2}\d{4}$/;
 const onlyNumberRegex = /^[0-9]*$/;
@@ -96,18 +97,32 @@ export default class Checkout extends Component {
 
     return (
       <div className="checkout">
+
+
         <div className="checkout-side">
-          {/* <div className="checkout-nav mb-5">
+
+          
+          <div className="step-nav mt-4">
+            <button style={{position: 'absolute'}} className="btn-chevron-left"><img src={Chevron} alt=""/></button>
+            <div style={{width: '100%', textAlign: 'center'}}>
+              <span>Etapa 2 de 3</span>
+            </div>
+          </div>
+          
+
+          <div className="paymente-methode checkout-nav mb-3">
             <button className="btn-chevron-left"><img src={Chevron} alt=""/></button>
             <span>Alterar forma de pagamento</span>
-          </div> */}
+          </div>
+
+
           <div className="checkout-card">
             <div className="card-invate">
               <img src={CardIcon} alt="" />
               <p className="ml-3">Adicione um novo cartão de crédito</p>
             </div>
             <div>
-              <CleanCard />
+              {this.state.number !== "" ? <Card card={this.state} /> : <CleanCard card={this.state} />}
             </div>
           </div>
         </div>
