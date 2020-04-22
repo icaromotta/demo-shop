@@ -123,6 +123,7 @@ export default class Checkout extends Component {
             </div>
             <div>
               {this.state.number !== "" ? <Card card={this.state} /> : <CleanCard card={this.state} />}
+              {/* <Card /> */}
             </div>
           </div>
         </div>

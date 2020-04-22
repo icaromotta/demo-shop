@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import logo from "./Group 2290.svg";
 import "./App.scss";
 import Checkout from "./containers/checkout/checkout/Checkout";
+import Card from "./components/card/card/Card";
 
 function App() {
   return (

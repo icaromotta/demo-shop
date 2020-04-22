@@ -30,6 +30,8 @@
       color: #fff;
       background-color: #de4b4b;
 
+      z-index: -2;
+
       .step-nav {
         width: 100%; 
         display: flex; 
@@ -101,8 +103,7 @@
       color: #fff;
       background-color: #de4b4b;
       grid-area: side-bar;
-
-
+      
       .step-nav {
         width: 100%; 
         display: none; 
