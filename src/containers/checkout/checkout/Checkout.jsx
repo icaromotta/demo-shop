@@ -7,9 +7,7 @@ import CardIcon from "./card-icon.svg";
 
 import CleanCard from "../../../components/card/clean-card/CleanCard.jsx";
 import Card from "../../../components/card/card/Card.jsx";
-
-const cardNumberRegex = /\d{3}(| |-)(?:\d{4}\1){2}\d{4}$/;
-const onlyNumberRegex = /^[0-9]*$/;
+import Wizard from "../../../components/wizard/Wizard.jsx";
 
 const formValid = (formErrors) => {
   let valid = true;
@@ -65,6 +63,7 @@ export default class Checkout extends Component {
 
     switch (name) {
       case "number":
+        const cardNumberRegex = /\d{3}(| |-)(?:\d{4}\1){2}\d{4}$/;
         formErrors.number = cardNumberRegex.test(`${value}`)
           ? ""
           : "card number invalid";
@@ -74,6 +73,7 @@ export default class Checkout extends Component {
           value.length < 3 ? "minimum 3 characters required" : "";
         break;
       case "code":
+        const onlyNumberRegex = /^[0-9]*$/;
         formErrors.code = onlyNumberRegex.test(value) ? "" : "only numbers";
         break;
       case "expiration":
@@ -83,7 +83,7 @@ export default class Checkout extends Component {
           : "invalid date";
         break;
       case "times":
-        formErrors.times = value === '' ? "minimum one choice" : "";
+        formErrors.times = value === "" ? "minimum one choice" : "";
         break;
       default:
         break;
@@ -97,38 +97,43 @@ export default class Checkout extends Component {
 
     return (
       <div className="checkout">
-
-
         <div className="checkout-side">
-
-          
           <div className="step-nav mt-4">
-            <button style={{position: 'absolute'}} className="btn-chevron-left"><img src={Chevron} alt=""/></button>
-            <div style={{width: '100%', textAlign: 'center'}}>
+            <button
+              style={{ position: "absolute" }}
+              className="btn-chevron-left"
+            >
+              <img src={Chevron} alt="" />
+            </button>
+            <div style={{ width: "100%", textAlign: "center" }}>
               <span>Etapa 2 de 3</span>
             </div>
           </div>
-          
-
           <div className="paymente-methode checkout-nav mb-3">
-            <button className="btn-chevron-left"><img src={Chevron} alt=""/></button>
+            <button className="btn-chevron-left">
+              <img src={Chevron} alt="" />
+            </button>
             <span>Alterar forma de pagamento</span>
           </div>
-
-
           <div className="checkout-card">
             <div className="card-invate">
               <img src={CardIcon} alt="" />
               <p className="ml-3">Adicione um novo cartão de crédito</p>
             </div>
             <div>
-              {this.state.number !== "" ? <Card card={this.state} /> : <CleanCard card={this.state} />}
-              {/* <Card /> */}
+              {this.state.number !== "" ? (
+                <Card card={this.state} />
+              ) : (
+                <CleanCard card={this.state} />
+              )}
             </div>
           </div>
         </div>
 
-        <div className="wizard">
+        <div className="checkout-step">
+
+          <Wizard />
+
           <form onSubmit={this.handleSubmit} noValidate>
             <div className="form-group">
               <MaskInput
@@ -209,15 +214,13 @@ export default class Checkout extends Component {
                   noValidate
                 />
 
-                {(formErrors.code.length > 0) && (
+                {formErrors.code.length > 0 && (
                   <small className="error-message">Código inválido</small>
                 )}
               </div>
             </div>
 
             <div className="form-group mt-3">
-
-                
               <select
                 id="inputState"
                 name="times"
@@ -241,9 +244,10 @@ export default class Checkout extends Component {
               </select>
 
               {formErrors.times.length > 0 && (
-                <small className="error-message">Insira o número de parcelas</small>
+                <small className="error-message">
+                  Insira o número de parcelas
+                </small>
               )}
-
             </div>
 
             <button type="submit" className="btn btn-danger float-right">

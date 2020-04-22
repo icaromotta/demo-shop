@@ -1,0 +1,29 @@
+// background-color: greenyellow;
+
+@media (max-width: 767.98px) {
+  .wizard {
+    display: none;
+  }
+}
+
+@media (min-width: 767.98px) {
+  .wizard {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      color: #de4b4b;
+
+      li {
+        display: inline;
+
+        img {
+          width: 22px;
+        }
+      }
+    }
+  }
+}

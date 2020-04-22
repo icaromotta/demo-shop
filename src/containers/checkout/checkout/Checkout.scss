@@ -65,14 +65,13 @@
       }
     }
   
-    .wizard {
-      // background-color: green;
+    .checkout-step {
+    
       height: 500px;
       padding: 80px 8%;
       margin-top: 80px;
 
       form {
-
         .form-control {
           border-top: none;
           border-left: none;
@@ -81,8 +80,6 @@
           background-color: transparent;
           border-radius: 0;
         }
-
-        
       }
     }
   }
@@ -94,7 +91,7 @@
     
     display: grid;
     grid-template-columns: 2fr 8fr;
-    grid-template-areas: "side-bar wizard";
+    grid-template-areas: "side-bar checkout-step";
     height: 596px;
     background-color: #fff;
 
@@ -108,14 +105,17 @@
         width: 100%; 
         display: none; 
         padding: 0 8%;
+
+        button {
+          position: absolute;
+        }
       }
       
       .checkout-nav {
 
-        margin: 10% 15%;
+        margin: 50px 50px;
 
         .btn-chevron-left {
-          
           background-color: transparent;
           border: none;
           text-align: start;
@@ -126,8 +126,6 @@
         .paymente-methode {
           display: none;
         }
-
-        
       }
 
       .checkout-card {
@@ -150,12 +148,14 @@
         }
       }
     }
-    .wizard {
-      grid-area: wizard;
+    
+    .checkout-step {
 
+      grid-area: checkout-step;
+      padding: 0 10%;
+      margin: 50px 23px;
+      
       form {
-
-        padding: 15%;
 
         .form-control {
 
@@ -170,7 +170,6 @@
         input:focus {
           outline: none;
         }
-        
       }
     }
   }
