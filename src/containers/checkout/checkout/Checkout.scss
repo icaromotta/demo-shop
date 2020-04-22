@@ -1,7 +1,28 @@
+.checkout {
+
+  .checkout-step {
+
+    form {
+
+      input::placeholder {
+        color: #c9c9c9;
+        opacity: 1;
+      }
+
+      select {
+        color: #c9c9c9;
+        border-radius: 0;
+        -webkit-appearance: none;
+        background: url("./chevron-down.png") right center no-repeat;
+      }
+    }
+  }
+}
+
 .error {
   border-bottom: 2px solid red !important;
 }
-.error-message{
+.error-message {
   color: red;
 }
 
@@ -13,28 +34,23 @@
   margin: 0;
 }
 
-
 @media (max-width: 767.98px) {
-
   .checkout {
-
     width: 100%;
     display: grid;
-  
-    .checkout-side {
 
+    .checkout-side {
       height: 230px;
       display: flex;
       flex-direction: column;
       align-items: center;
       color: #fff;
       background-color: #de4b4b;
-
       z-index: -2;
 
       .step-nav {
-        width: 100%; 
-        display: flex; 
+        width: 100%;
+        display: flex;
         padding: 0 8%;
       }
 
@@ -43,11 +59,9 @@
       }
 
       .checkout-card {
-
         margin: 2% 15%;
 
         .card-invate {
-
           display: flex;
           flex-direction: row;
           justify-content: center;
@@ -64,9 +78,8 @@
         }
       }
     }
-  
+
     .checkout-step {
-    
       height: 500px;
       padding: 80px 8%;
       margin-top: 80px;
@@ -76,7 +89,7 @@
           border-top: none;
           border-left: none;
           border-right: none;
-          border-bottom: 1px solid #C9C9C9;
+          border-bottom: 1px solid #c9c9c9;
           background-color: transparent;
           border-radius: 0;
         }
@@ -86,9 +99,7 @@
 }
 
 @media (min-width: 767.98px) {
-
   .checkout {
-    
     display: grid;
     grid-template-columns: 2fr 8fr;
     grid-template-areas: "side-bar checkout-step";
@@ -96,23 +107,21 @@
     background-color: #fff;
 
     .checkout-side {
-
       color: #fff;
       background-color: #de4b4b;
       grid-area: side-bar;
-      
+
       .step-nav {
-        width: 100%; 
-        display: none; 
+        width: 100%;
+        display: none;
         padding: 0 8%;
 
         button {
           position: absolute;
         }
       }
-      
-      .checkout-nav {
 
+      .checkout-nav {
         margin: 50px 50px;
 
         .btn-chevron-left {
@@ -129,10 +138,9 @@
       }
 
       .checkout-card {
-
         height: 400px;
         margin: 2% 15%;
-        
+
         .card-invate {
           display: flex;
           flex-direction: row;
@@ -148,27 +156,21 @@
         }
       }
     }
-    
-    .checkout-step {
 
+    .checkout-step {
       grid-area: checkout-step;
       padding: 0 10%;
       margin: 50px 23px;
-      
+
       form {
-
         .form-control {
-
           border-top: none;
           border-left: none;
           border-right: none;
-          border-bottom: 1px solid #C9C9C9;
+          border-bottom: 1px solid #c9c9c9;
           background-color: transparent;
           border-radius: 0;
-        }
-
-        input:focus {
-          outline: none;
+          border-color: #c9c9c9;
         }
       }
     }

@@ -10,20 +10,20 @@ export default (props) => (
   <div className="wizard mb-3">
     <ul>
       <li>
-        <img src={Checked} alt="" /> Carrinho
+        <img src={Checked} className="mr-2" alt="" /> Carrinho
       </li>
       <li>
-        <img src={Arrow} alt="" />
+        <img src={Arrow} className="mr-2" alt="" />
       </li>
       <li>
-        <img src={Step2} alt="" />
+        <img src={Step2} className="mr-2" alt="" />
         Pagamento
       </li>
       <li>
         <img src={Arrow} alt="" />
       </li>
       <li>
-        <img src={Step3} alt="" /> Confirmação
+        <img src={Step3} className="mr-2" alt="" /> Confirmação
       </li>
     </ul>
   </div>

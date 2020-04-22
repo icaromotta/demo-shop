@@ -18,7 +18,9 @@
       color: #de4b4b;
 
       li {
-        display: inline;
+        
+        display: flex;
+        align-content: center;
 
         img {
           width: 22px;

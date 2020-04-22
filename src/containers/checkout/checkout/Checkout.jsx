@@ -220,7 +220,7 @@ export default class Checkout extends Component {
               </div>
             </div>
 
-            <div className="form-group mt-3">
+            <div className="form-group times mt-3">
               <select
                 id="inputState"
                 name="times"
