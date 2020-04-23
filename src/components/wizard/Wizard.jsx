@@ -1,5 +1,4 @@
 import React from "react";
-import Step1 from "./step-1.png";
 import Step2 from "./step-2.png";
 import Step3 from "./step-3.png";
 import Arrow from "./arrow.png";

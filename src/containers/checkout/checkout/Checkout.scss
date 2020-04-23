@@ -1,8 +1,18 @@
 .checkout {
-
   .checkout-step {
-
     form {
+      
+      .form-group {
+        padding: 2% 0;
+      }
+
+      input:hover,
+      input:active,
+      input:focus {
+        outline: 0px !important;
+        -webkit-appearance: none;
+        box-shadow: none !important;
+      }
 
       input::placeholder {
         color: #c9c9c9;
@@ -15,6 +25,7 @@
         -webkit-appearance: none;
         background: url("./chevron-down.png") right center no-repeat;
       }
+
     }
   }
 }

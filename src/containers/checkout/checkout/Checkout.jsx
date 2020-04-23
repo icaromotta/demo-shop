@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MaskInput from "react-maskinput";
-
 import "./Checkout.scss";
+
 import Chevron from "./chevron.svg";
 import CardIcon from "./card-icon.svg";
 
@@ -10,6 +10,7 @@ import Card from "../../../components/card/card/Card.jsx";
 import Wizard from "../../../components/wizard/Wizard.jsx";
 
 const formValid = (formErrors) => {
+
   let valid = true;
 
   Object.values(formErrors).forEach((val) => {
@@ -39,6 +40,7 @@ export default class Checkout extends Component {
   }
 
   handleSubmit = (e) => {
+    
     e.preventDefault();
 
     if (formValid(this.state.formErrors)) {
@@ -56,6 +58,7 @@ export default class Checkout extends Component {
   };
 
   handleChange = (e) => {
+    
     e.preventDefault();
 
     const { name, value } = e.target;
@@ -64,9 +67,7 @@ export default class Checkout extends Component {
     switch (name) {
       case "number":
         const cardNumberRegex = /\d{3}(| |-)(?:\d{4}\1){2}\d{4}$/;
-        formErrors.number = cardNumberRegex.test(`${value}`)
-          ? ""
-          : "card number invalid";
+        formErrors.number = cardNumberRegex.test(`${value}`) ? "" : "card number invalid";
         break;
       case "name":
         formErrors.name =
@@ -77,7 +78,7 @@ export default class Checkout extends Component {
         formErrors.code = onlyNumberRegex.test(value) ? "" : "only numbers";
         break;
       case "expiration":
-        const expirationRegex = /^(0[1-3]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/;
+        const expirationRegex = /^\d{2}\/\d{2}$/;
         formErrors.expiration = expirationRegex.test(value)
           ? ""
           : "invalid date";
@@ -89,7 +90,7 @@ export default class Checkout extends Component {
         break;
     }
 
-    this.setState({ formErrors, [name]: value }, console.log(this.state));
+    this.setState({ formErrors, [name]: value });
   };
 
   render() {
@@ -121,7 +122,7 @@ export default class Checkout extends Component {
               <p className="ml-3">Adicione um novo cartão de crédito</p>
             </div>
             <div>
-              {this.state.number !== "" ? (
+              {this.state.number !== "" || this.state.name !== "" || this.state.expiration !== "" || this.state.code !== "" || this.state.times !== "" ? (
                 <Card card={this.state} />
               ) : (
                 <CleanCard card={this.state} />
@@ -234,7 +235,7 @@ export default class Checkout extends Component {
                 onChange={this.handleChange}
                 placeholder="teste"
               >
-                <option value="">Número de parcelas</option>
+                <option value="1">Número de parcelas</option>
                 <option value="1">1X</option>
                 <option value="2">2x</option>
                 <option value="3">3x</option>
