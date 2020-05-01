@@ -94,6 +94,7 @@ export default class Checkout extends Component {
   };
 
   render() {
+    
     const { formErrors } = this.state;
 
     return (
